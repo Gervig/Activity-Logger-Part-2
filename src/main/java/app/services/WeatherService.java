@@ -1,5 +1,8 @@
 package app.services;
 
+import app.dtos.CurrentDataDTO;
+import app.entities.CurrentData;
+import app.entities.WeatherInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.dtos.WeatherInfoDTO;
 import java.net.URI;
@@ -32,5 +35,18 @@ public class WeatherService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //Could this be void?
+    public WeatherInfo persistWeatherInfo(WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO){
+        CurrentDataService currentDataService = new CurrentDataService();
+        CurrentData currentData = currentDataService.persistCurrentData(currentDataDTO);
+
+        WeatherInfo weatherInfo = WeatherInfo.builder()
+                .locationName(weatherInfoDTO.getLocationName())
+                .currentData(currentData)
+                .build();
+
+        return weatherInfo;
     }
 }
