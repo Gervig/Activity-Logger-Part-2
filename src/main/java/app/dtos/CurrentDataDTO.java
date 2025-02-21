@@ -10,8 +10,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CurrentDataDTO {
-    private double temperature;  // In Celsius or Fahrenheit
-    private String skyText;      // Description of sky condition (e.g., clear, cloudy)
-    private int humidity;        // Humidity percentage
-    private String windText;     // Description of wind condition
+    private double temperature;
+    private String skyText;
+    private int humidity;
+    private String windText;
 }
