@@ -1,5 +1,8 @@
 package app.daos;
 
+import app.dtos.ActivityDTO;
+import app.dtos.CityInfoDTO;
+import app.entities.Activity;
 import app.entities.CityInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
@@ -104,5 +107,18 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
         {
             throw new ApiException(401, "Error removing cityInfo", e);
         }
+    }
+
+    //Task 3
+    //Could this be void?
+    public CityInfo persistCityInfo(CityInfoDTO cityInfoDTO){
+        CityInfo cityInfo = CityInfo.builder()
+                .name(cityInfoDTO.getName())
+                .url(cityInfoDTO.getUrl())
+                .latitude(cityInfoDTO.getVisualCenter().get(0))
+                .longitude(cityInfoDTO.getVisualCenter().get(1))
+                .build();
+        create(cityInfo);
+        return cityInfo;
     }
 }
