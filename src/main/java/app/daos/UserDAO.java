@@ -109,16 +109,4 @@ public class UserDAO implements IDAO<Users,Long>
 
     }
 
-    //Task 3
-    //Could this be void?
-    public Users persistUser(UserDTO userDTO){
-        Users user = Users.builder()
-                .name(userDTO.getName())
-                .age(userDTO.getAge())
-                //.weight(userDTO.getWeight())
-                .build();
-        create(user);
-        return user;
-    }
-
 }
