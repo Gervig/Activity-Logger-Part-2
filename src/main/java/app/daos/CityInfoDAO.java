@@ -1,7 +1,6 @@
 package app.daos;
 
 import app.entities.CityInfo;
-import app.entities.WeatherInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
