@@ -1,7 +1,7 @@
 package app.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dtos.CityInfoDTO;
+import app.dtos.CityInfoDTO;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
