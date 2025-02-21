@@ -24,8 +24,6 @@ public class CurrentData {
     @Column(name="wind_text")
     private String windText;
 
-    // bidirectional mapping
-    @OneToOne
-    @JoinColumn(name = "weather_info_id")
+    @OneToOne(mappedBy = "currentData")
     private WeatherInfo weatherInfo;
 }

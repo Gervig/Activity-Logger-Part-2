@@ -19,9 +19,10 @@ public class WeatherInfo
     @Column(name="location_name")
     private String locationName;
 
-    @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
+    @OneToOne // WeatherInfo owns the relationship
+    @JoinColumn(name = "current_data_id", nullable = false)
     private CurrentData currentData;
 
-    @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL) // One activity has one weather report
+    @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
     private Activity activity;
 }
