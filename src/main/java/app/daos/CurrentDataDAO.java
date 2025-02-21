@@ -1,5 +1,6 @@
 package app.daos;
 
+import app.dtos.CurrentDataDTO;
 import app.entities.CurrentData;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
@@ -106,4 +107,18 @@ public class CurrentDataDAO implements IDAO<CurrentData, Long>
             throw new ApiException(401, "Error removing currentData", e);
         }
     }
+
+    //Task 3
+    //Could this be void?
+    public CurrentData persistCurrentData(CurrentDataDTO currentDataDTO){
+        CurrentData currentData = CurrentData.builder()
+                .temperature(currentDataDTO.getTemperature())
+                .skyText(currentDataDTO.getSkyText())
+                .humidity(currentDataDTO.getHumidity())
+                .windText(currentDataDTO.getWindText())
+                .build();
+        create(currentData);
+        return currentData;
+    }
+
 }
