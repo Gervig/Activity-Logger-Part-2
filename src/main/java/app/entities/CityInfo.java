@@ -3,6 +3,9 @@ package app.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @ToString
 @AllArgsConstructor
@@ -33,7 +36,6 @@ public class CityInfo
     private Double longitude;
 
     //TODO lav relation om, mange til en
-    @OneToOne
-    @JoinColumn(name = "activity_id") // This makes CityInfo store the foreign key
-    private Activity activity;
+    @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.ALL) // One city has many activities
+    private List<Activity> activities = new ArrayList<>();
 }

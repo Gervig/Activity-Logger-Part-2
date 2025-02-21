@@ -22,9 +22,6 @@ public class WeatherInfo
     @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
     private CurrentData currentData;
 
-    @OneToOne
-    @JoinColumn(name = "activity_id") // This makes WeatherInfo store the foreign key
+    @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL) // One activity has one weather report
     private Activity activity;
-
-
 }

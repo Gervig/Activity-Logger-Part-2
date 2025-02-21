@@ -40,12 +40,12 @@ public class Activity
     }
 
     //TODO lav relation om, mange til en
-    @OneToOne(mappedBy = "activity")
-    @ToString.Exclude
+    @ManyToOne // Many activities can happen in the same city
+    @JoinColumn(name = "city_info_id", nullable = false)
     private CityInfo cityInfo;
 
-    @OneToOne(mappedBy = "activity")
-    @ToString.Exclude
+    @OneToOne // One activity has one weather report
+    @JoinColumn(name = "weather_info_id", nullable = true)
     private WeatherInfo weatherInfo;
 
 
