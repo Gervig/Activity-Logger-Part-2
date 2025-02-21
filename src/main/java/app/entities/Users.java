@@ -6,11 +6,13 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User
+@Entity
+public class Users
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class User
 
     private float weight;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "activity",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users",cascade = CascadeType.ALL)
     @Setter
     private Set<Activity> activities = new HashSet<>();
 
@@ -30,7 +32,7 @@ public class User
     {
         if(activity != null){
             activities.add(activity);
-            activity.setUser(this);
+            activity.setUsers(this);
         }
     }
 }

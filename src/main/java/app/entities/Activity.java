@@ -1,17 +1,18 @@
 package app.entities;
 
-import app.dtos.CityInfoDTO;
-import app.dtos.WeatherInfoDTO;
+import app.enums.ActivityType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Activity
 {
     @Id
@@ -20,7 +21,7 @@ public class Activity
     @Column(name = "exercise_date")
     private LocalDate exerciseDate;
     @Column(name = "exercise_type")
-    private Activity exerciseType;
+    private ActivityType exerciseType;
     @Column(name = "time_of_day")
     private LocalTime timeOfDay;
     private double duration;
@@ -29,26 +30,22 @@ public class Activity
 
     @ManyToOne
     @Setter
-    private User user;
+    private Users users;
 
-    public void addUser(User user){
-        if(user != null){
-            this.user = user;
-            user.addActivity(this);
+    public void addUser(Users users){
+        if(users != null){
+            this.users = users;
+            users.addActivity(this);
         }
     }
 
-    //PersonDetail -> Activity
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "activity")
     @ToString.Exclude
-    @Column(name = "city_info_id")
     private CityInfo cityInfo;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "activity")
     @ToString.Exclude
-    @Column(name = "weather_info_id")
-    private WeatherInfoDTO weatherInfo;
+    private WeatherInfo weatherInfo;
+
 
 }

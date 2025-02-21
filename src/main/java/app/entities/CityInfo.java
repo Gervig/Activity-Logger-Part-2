@@ -3,10 +3,12 @@ package app.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class CityInfo
 {
     @Id
@@ -30,6 +32,7 @@ public class CityInfo
     @Setter
     private Double longitude;
 
-    @OneToOne(mappedBy = "cityInfo", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "activity_id") // This makes CityInfo store the foreign key
     private Activity activity;
 }
