@@ -27,9 +27,10 @@ public class CityServiceCallable implements Callable<CityInfoDTO>
     {
         List<Future<CityInfoDTO>> futureList = new ArrayList<>();
 
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
         for(String cityName: cityNames)
         {
-            ExecutorService executorService = Executors.newCachedThreadPool();
 
             Callable task = new CityServiceCallable(cityName);
 
