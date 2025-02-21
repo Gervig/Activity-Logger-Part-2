@@ -1,8 +1,6 @@
 package app.daos;
 
-import app.dtos.ActivityDTO;
 import app.dtos.CityInfoDTO;
-import app.entities.Activity;
 import app.entities.CityInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
