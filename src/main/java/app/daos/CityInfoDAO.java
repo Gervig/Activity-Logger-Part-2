@@ -107,16 +107,4 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
         }
     }
 
-    //Task 3
-    //Could this be void?
-    public CityInfo persistCityInfo(CityInfoDTO cityInfoDTO){
-        CityInfo cityInfo = CityInfo.builder()
-                .name(cityInfoDTO.getName())
-                .url(cityInfoDTO.getUrl())
-                .latitude(cityInfoDTO.getVisualCenter().get(0))
-                .longitude(cityInfoDTO.getVisualCenter().get(1))
-                .build();
-        create(cityInfo);
-        return cityInfo;
-    }
 }
