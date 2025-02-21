@@ -1,7 +1,10 @@
 package app.services;
 
+import app.entities.CityInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.dtos.CityInfoDTO;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -55,6 +58,35 @@ public class CityService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //----------------------------------
+    private EntityManagerFactory emf;
+    private EntityManager em;
+
+    public CityService(EntityManagerFactory emf) {
+        this.emf = emf;
+        this.em = emf.createEntityManager();
+    }
+
+    public void saveCityInfo(CityInfoDTO cityInfoDTO) {
+        // Start en transaktion
+        em.getTransaction().begin();
+
+        // Konverter DTO til CityInfo entitet
+        CityInfo cityInfo = new CityInfo();
+        cityInfo.setName(cityInfoDTO.getName());
+        cityInfo.setUrl(cityInfoDTO.getUrl());
+
+        // Brug Jackson's setter til at sætte visual center (latitude og longitude)
+        cityInfo.setLatitude(cityInfoDTO.getVisualCenter().get(0));
+        cityInfo.setLongitude(cityInfoDTO.getVisualCenter().get(1));
+
+        // Gem entiteten direkte i databasen
+        em.persist(cityInfo);
+
+        // Commit transaktionen
+        em.getTransaction().commit();
     }
 
 }
