@@ -16,5 +16,3 @@ public class WeatherInfoDTO {
     @JsonProperty("CurrentData")
     private CurrentDataDTO currentData;
 }
-
-
