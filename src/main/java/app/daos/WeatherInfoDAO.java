@@ -1,5 +1,9 @@
 package app.daos;
 
+import app.dtos.CityInfoDTO;
+import app.dtos.CurrentDataDTO;
+import app.dtos.WeatherInfoDTO;
+import app.entities.CityInfo;
 import app.entities.WeatherInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
@@ -105,4 +109,15 @@ public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
         }
 
     }
+
+    //Task 3
+    //Could this be void?
+    public WeatherInfo persistWeatherInfo(WeatherInfoDTO weatherInfoDTO){
+        WeatherInfo weatherInfo = WeatherInfo.builder()
+                .locationName(weatherInfoDTO.getLocationName())
+                .build();
+        create(weatherInfo);
+        return weatherInfo;
+    }
+
 }
