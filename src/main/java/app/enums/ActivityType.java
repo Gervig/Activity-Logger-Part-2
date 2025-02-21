@@ -1,0 +1,6 @@
+package app.enums;
+
+public enum ActivityType
+{
+    RUNNING, WALKING, CYCLING, HIKING, SWIMMING, SKATING, SKIING, SNOWBOARDING, SNOWSHOEING, OTHER
+}
