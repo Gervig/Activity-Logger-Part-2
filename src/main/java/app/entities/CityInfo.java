@@ -32,6 +32,7 @@ public class CityInfo
     @Setter
     private Double longitude;
 
+    //TODO lav relation om, mange til en
     @OneToOne
     @JoinColumn(name = "activity_id") // This makes CityInfo store the foreign key
     private Activity activity;

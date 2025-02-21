@@ -39,6 +39,7 @@ public class Activity
         }
     }
 
+    //TODO lav relation om, mange til en
     @OneToOne(mappedBy = "activity")
     @ToString.Exclude
     private CityInfo cityInfo;
