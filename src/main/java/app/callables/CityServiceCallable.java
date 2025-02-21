@@ -31,7 +31,6 @@ public class CityServiceCallable implements Callable<CityInfoDTO>
 
         for(String cityName: cityNames)
         {
-
             Callable task = new CityServiceCallable(cityName);
 
             Future<CityInfoDTO> future = executorService.submit(task);

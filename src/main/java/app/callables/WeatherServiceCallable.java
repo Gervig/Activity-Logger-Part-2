@@ -30,10 +30,9 @@ public class WeatherServiceCallable implements Callable<WeatherInfoDTO>
         List<Future<WeatherInfoDTO>> futureList = new ArrayList<>();
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        
+
         for(String cityName: cityNames)
         {
-
             Callable task = new WeatherServiceCallable(cityName);
 
             Future<WeatherInfoDTO> future = executorService.submit(task);
