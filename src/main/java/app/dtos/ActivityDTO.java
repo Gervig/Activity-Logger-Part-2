@@ -1,6 +1,6 @@
 package app.dtos;
 
-import enums.ActivityType;
+import app.enums.ActivityType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
