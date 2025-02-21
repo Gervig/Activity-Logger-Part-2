@@ -109,19 +109,4 @@ public class ActivityDAO implements IDAO<Activity,Long>
 
     }
 
-    //Task 3
-    //Could this be void?
-    public Activity persistActivity(ActivityDTO activityDTO){
-        Activity activity = Activity.builder()
-                .exerciseDate(activityDTO.getExerciseDate())
-                .exerciseType(activityDTO.getExerciseType())
-                .timeOfDay(activityDTO.getTimeOfDay())
-                .duration(activityDTO.getDuration())
-                .distance(activityDTO.getDistance())
-                .comment(activityDTO.getComment())
-                .build();
-        create(activity);
-        return activity;
-    }
-
 }
