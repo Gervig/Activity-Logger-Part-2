@@ -1,6 +1,8 @@
 package app.services;
 
 import app.callables.CityServiceCallable;
+import app.daos.CityInfoDAO;
+import app.entities.CityInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.dtos.CityInfoDTO;
 
@@ -63,6 +65,17 @@ public class CityService
             e.printStackTrace();
         }
         return null;
+    }
+
+    //Could this be void?
+    public CityInfo persistCityInfo(CityInfoDTO cityInfoDTO){
+        CityInfo cityInfo = CityInfo.builder()
+                .name(cityInfoDTO.getName())
+                .url(cityInfoDTO.getUrl())
+                .latitude(cityInfoDTO.getVisualCenter().get(0))
+                .longitude(cityInfoDTO.getVisualCenter().get(1))
+                .build();
+        return cityInfo;
     }
 
 }
