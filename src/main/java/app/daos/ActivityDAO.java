@@ -1,5 +1,6 @@
 package app.daos;
 
+import app.dtos.ActivityDTO;
 import app.entities.Activity;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
@@ -31,14 +32,14 @@ public class ActivityDAO implements IDAO<Activity,Long>
 
 
     @Override
-    public Activity create(Activity type)
+    public Activity create(Activity activity)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            em.persist(type);
+            em.persist(activity);
             em.getTransaction().commit();
-            return type;
+            return activity;
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating activity", e);
@@ -107,4 +108,20 @@ public class ActivityDAO implements IDAO<Activity,Long>
         }
 
     }
+
+    //Task 3
+    //Could this be void?
+    public Activity persistActivity(ActivityDTO activityDTO){
+        Activity activity = Activity.builder()
+                .exerciseDate(activityDTO.getExerciseDate())
+                .exerciseType(activityDTO.getExerciseType())
+                .timeOfDay(activityDTO.getTimeOfDay())
+                .duration(activityDTO.getDuration())
+                .distance(activityDTO.getDistance())
+                .comment(activityDTO.getComment())
+                .build();
+        create(activity);
+        return activity;
+    }
+
 }
