@@ -12,5 +12,5 @@ import lombok.ToString;
 public class UserDTO {
     private String name;
     private int age;
-    private double weight;
+    private float weight;
 }
