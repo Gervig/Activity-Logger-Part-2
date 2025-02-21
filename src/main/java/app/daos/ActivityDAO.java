@@ -1,5 +1,5 @@
 package app.daos;
 
-public class ActivityDAO implements IDAO
-{
-}
+//public class ActivityDAO implements IDAO
+//{
+//}
