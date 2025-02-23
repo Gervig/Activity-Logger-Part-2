@@ -44,9 +44,18 @@ public class ActivityService
 
         activity = activityDAO.create(activity);
 
+        //TODO: fix this
+        // For some reason I have to make a new Set,
+        // the Users entity doesn't have one when initialized
+        // therefor it's null ??
         Set<Activity> activitySet = new HashSet<>();
 
+        //TODO: also fix this
+        // Sets the set of activities for the Users entity,
+        // again why I have to do this. I don't know, I hate it
         user.setActivities(activitySet);
+
+        // adds the Activity entity to the Users entity
         user.addActivity(activity);
 
         return activity;
