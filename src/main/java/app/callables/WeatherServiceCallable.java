@@ -25,29 +25,34 @@ public class WeatherServiceCallable implements Callable<WeatherInfoDTO>
         return weatherInfoDTO;
     }
 
-    public List<WeatherInfoDTO> getWeatherInfoDTOs(String[] cityNames) throws ExecutionException, InterruptedException
+    public static List<WeatherInfoDTO> getWeatherInfoDTOs(String[] cityNames)
     {
         List<Future<WeatherInfoDTO>> futureList = new ArrayList<>();
-
         ExecutorService executorService = Executors.newCachedThreadPool();
 
-        for(String cityName: cityNames)
+        for (String cityName : cityNames)
         {
-            Callable task = new WeatherServiceCallable(cityName);
-
+            Callable<WeatherInfoDTO> task = new WeatherServiceCallable(cityName);
             Future<WeatherInfoDTO> future = executorService.submit(task);
-
             futureList.add(future);
         }
 
         List<WeatherInfoDTO> weatherInfoDTOS = new ArrayList<>();
 
-        for (Future<WeatherInfoDTO> weatherInfoDTOFuture: futureList)
+        for (Future<WeatherInfoDTO> weatherInfoDTOFuture : futureList)
         {
-            WeatherInfoDTO finishedTask = weatherInfoDTOFuture.get();
-            weatherInfoDTOS.add(finishedTask);
+            try
+            {
+                WeatherInfoDTO finishedTask = weatherInfoDTOFuture.get();
+                weatherInfoDTOS.add(finishedTask);
+            } catch (InterruptedException | ExecutionException e)
+            {
+                System.err.println("Error retrieving data for a city: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
 
+        executorService.shutdown();
         return weatherInfoDTOS;
     }
 }

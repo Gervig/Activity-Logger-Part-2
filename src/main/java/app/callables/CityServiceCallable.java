@@ -23,29 +23,35 @@ public class CityServiceCallable implements Callable<CityInfoDTO>
         return cityInfoDTO;
     }
 
-    public List<CityInfoDTO> getCityInfoDTOs(String[] cityNames) throws ExecutionException, InterruptedException
+    public static List<CityInfoDTO> getCityInfoDTOs(String[] cityNames)
     {
         List<Future<CityInfoDTO>> futureList = new ArrayList<>();
-
         ExecutorService executorService = Executors.newCachedThreadPool();
 
-        for(String cityName: cityNames)
+        for (String cityName : cityNames)
         {
-            Callable task = new CityServiceCallable(cityName);
-
+            Callable<CityInfoDTO> task = new CityServiceCallable(cityName);
             Future<CityInfoDTO> future = executorService.submit(task);
-
             futureList.add(future);
         }
 
         List<CityInfoDTO> cityInfoDTOS = new ArrayList<>();
 
-        for (Future<CityInfoDTO> cityInfoDTOFuture: futureList)
+        for (Future<CityInfoDTO> cityInfoDTOFuture : futureList)
         {
-            CityInfoDTO finishedTask = cityInfoDTOFuture.get();
-            cityInfoDTOS.add(finishedTask);
+            try
+            {
+                CityInfoDTO finishedTask = cityInfoDTOFuture.get();
+                cityInfoDTOS.add(finishedTask);
+            } catch (InterruptedException | ExecutionException e)
+            {
+                System.err.println("Error retrieving data for a city: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
 
+        executorService.shutdown();
         return cityInfoDTOS;
     }
+
 }
