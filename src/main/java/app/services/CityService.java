@@ -18,7 +18,7 @@ public class CityService
 
     private static final String BASE_URL = "https://api.dataforsyningen.dk/steder";
 
-    public static CityInfoDTO getCityInfo(String cityName) throws IOException, InterruptedException {
+    public static CityInfoDTO getCityInfo(String cityName) throws IOException {
         // Build the API request URL
         String encodedProperty = URLEncoder.encode("primærtnavn", StandardCharsets.UTF_8.toString());
         String encodedCityName = URLEncoder.encode(cityName, StandardCharsets.UTF_8.toString());
