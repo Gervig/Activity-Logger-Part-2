@@ -14,7 +14,9 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
     private static EntityManagerFactory emf;
     private static CityInfoDAO instance;
 
-    private CityInfoDAO(){}
+    private CityInfoDAO()
+    {
+    }
 
     //Singleton pattern
     public static CityInfoDAO getInstance(EntityManagerFactory _emf)
