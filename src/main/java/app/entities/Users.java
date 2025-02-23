@@ -14,7 +14,7 @@ import java.util.Set;
 @DynamicUpdate
 @Builder
 @Entity
-public class UserDTO
+public class Users
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,9 @@ public class UserDTO
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "users",cascade = CascadeType.ALL)
     @Setter
-    private Set<ActivityDTO> activities = new HashSet<>();
+    private Set<Activity> activities = new HashSet<>();
 
-    public void addActivity(ActivityDTO activity)
+    public void addActivity(Activity activity)
     {
         if(activity != null){
             activities.add(activity);

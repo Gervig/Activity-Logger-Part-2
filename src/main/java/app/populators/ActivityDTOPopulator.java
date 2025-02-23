@@ -1,8 +1,7 @@
 package app.populators;
 
-import app.entities.ActivityDTO;
+import app.dtos.ActivityDTO;
 import app.enums.ActivityType;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 

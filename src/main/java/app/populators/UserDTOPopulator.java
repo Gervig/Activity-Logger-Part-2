@@ -1,6 +1,7 @@
 package app.populators;
 
-import app.entities.UserDTO;
+
+import app.dtos.UserDTO;
 
 public class UserDTOPopulator
 {

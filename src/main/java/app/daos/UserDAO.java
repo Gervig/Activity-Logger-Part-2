@@ -1,13 +1,13 @@
 package app.daos;
 
-import app.entities.UserDTO;
+import app.entities.Users;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-public class UserDAO implements IDAO<UserDTO,Long>
+public class UserDAO implements IDAO<Users,Long>
 {
 
     private static EntityManagerFactory emf;
@@ -30,7 +30,7 @@ public class UserDAO implements IDAO<UserDTO,Long>
 
 
     @Override
-    public UserDTO create(UserDTO user)
+    public Users create(Users user)
     {
         try (EntityManager em = emf.createEntityManager())
         {
@@ -45,20 +45,20 @@ public class UserDAO implements IDAO<UserDTO,Long>
     }
 
     @Override
-    public UserDTO read(Long id)
+    public Users read(Long id)
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.find(UserDTO.class, id);
+            return em.find(Users.class, id);
         }
     }
 
     @Override
-    public List<UserDTO> readAll()
+    public List<Users> readAll()
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.createQuery("SELECT u FROM ActivityDTO u", UserDTO.class).getResultList();
+            return em.createQuery("SELECT u FROM Activity u", Users.class).getResultList();
         } catch (Exception e)
         {
             throw new ApiException(401, "Error finding list of users", e);
@@ -66,13 +66,13 @@ public class UserDAO implements IDAO<UserDTO,Long>
     }
 
     @Override
-    public UserDTO update(UserDTO user)
+    public Users update(Users user)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
             //Merge har en returtype, hvorfor man skal koble det på et updated objekt
-            UserDTO updatedUser = em.merge(user);
+            Users updatedUser = em.merge(user);
             //Ryd cache
             em.flush();
             //Vi vil gerne sikre os det KUN er det ene objekt der er opdateret der kommer med
@@ -91,7 +91,7 @@ public class UserDAO implements IDAO<UserDTO,Long>
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            UserDTO user = em.find(UserDTO.class, id);
+            Users user = em.find(Users.class, id);
             if (user == null)
             {
                 em.getTransaction().rollback();

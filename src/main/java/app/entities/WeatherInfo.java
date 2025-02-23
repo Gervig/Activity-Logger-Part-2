@@ -24,5 +24,5 @@ public class WeatherInfo
     private CurrentData currentData;
 
     @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
-    private ActivityDTO activity;
+    private Activity activity;
 }

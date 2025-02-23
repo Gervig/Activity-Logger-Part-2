@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @DynamicUpdate
 @Builder
 @Entity
-public class ActivityDTO
+public class Activity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +32,9 @@ public class ActivityDTO
 
     @ManyToOne
     @Setter
-    private UserDTO users;
+    private Users users;
 
-    public void addUser(UserDTO users){
+    public void addUser(Users users){
         if(users != null){
             this.users = users;
             users.addActivity(this);
