@@ -2,11 +2,13 @@ package app.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicUpdate
 @Builder
 @Entity
 public class CurrentData {

@@ -3,6 +3,7 @@ package app.entities;
 import app.enums.ActivityType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,6 +12,7 @@ import java.time.LocalTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicUpdate
 @Builder
 @Entity
 public class Activity
