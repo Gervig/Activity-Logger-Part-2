@@ -49,13 +49,12 @@ public class Main
         ActivityDTO a1 = activityDTOS[0];
         CityInfoDTO ci1 = cityInfoDTOS.get(0);
         WeatherInfoDTO wi1 = weatherInfoDTOS.get(0);
-        CurrentDataDTO cd1 = wi1.getCurrentData();
 
         // Instantiates service, for handling DTOs
         ActivityService activityService = new ActivityService(activityDAO);
 
         // Builds an Activity entity from DTOs and persists in DB
-        activityService.persistActivity(u1, a1, ci1, wi1, cd1);
+        activityService.persistActivity(u1, a1, ci1, wi1);
 
         // Close the database connection:
         em.close();

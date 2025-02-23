@@ -1,7 +1,5 @@
 package app.services;
 
-import app.dtos.CurrentDataDTO;
-import app.entities.CurrentData;
 import app.entities.WeatherInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

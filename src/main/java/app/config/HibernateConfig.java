@@ -43,7 +43,6 @@ public class HibernateConfig {
 //             configuration.addAnnotatedClass();
         configuration.addAnnotatedClass(Activity.class);
         configuration.addAnnotatedClass(CityInfo.class);
-        configuration.addAnnotatedClass(CurrentData.class);
         configuration.addAnnotatedClass(Users.class);
         configuration.addAnnotatedClass(WeatherInfo.class);
     }
