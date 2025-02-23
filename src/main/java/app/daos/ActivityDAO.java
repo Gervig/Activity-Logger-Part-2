@@ -14,7 +14,6 @@ public class ActivityDAO implements IDAO<Activity,Long>
     private static EntityManagerFactory emf;
     private static ActivityDAO instance;
 
-    //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
     private ActivityDAO(){}
 
     //Singleton pattern

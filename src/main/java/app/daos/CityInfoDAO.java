@@ -14,7 +14,6 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
     private static EntityManagerFactory emf;
     private static CityInfoDAO instance;
 
-    //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
     private CityInfoDAO(){}
 
     //Singleton pattern

@@ -14,7 +14,6 @@ public class CurrentDataDAO implements IDAO<CurrentData, Long>
     private static EntityManagerFactory emf;
     private static CurrentDataDAO instance;
 
-    //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
     private CurrentDataDAO()
     {
     }

@@ -13,7 +13,6 @@ public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
     private static EntityManagerFactory emf;
     private static WeatherInfoDAO instance;
 
-    //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
     private WeatherInfoDAO()
     {
     }
@@ -28,6 +27,7 @@ public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
         }
         return instance;
     }
+
     @Override
     public WeatherInfo create(WeatherInfo type)
     {
