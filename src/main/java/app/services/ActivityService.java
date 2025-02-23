@@ -1,13 +1,10 @@
 package app.services;
 
-import app.daos.ActivityDAO;
-import app.daos.CityInfoDAO;
-import app.daos.WeatherInfoDAO;
+import app.daos.impl.ActivityDAO;
 import app.dtos.*;
 import app.entities.*;
 import app.entities.Activity;
 import app.entities.Users;
-import jakarta.persistence.EntityManagerFactory;
 
 import java.util.HashSet;
 import java.util.Set;

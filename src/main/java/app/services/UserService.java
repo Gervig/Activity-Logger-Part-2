@@ -1,6 +1,6 @@
 package app.services;
 
-import app.daos.UserDAO;
+import app.daos.impl.UserDAO;
 import app.dtos.UserDTO;
 import app.entities.Users;
 import jakarta.persistence.EntityManagerFactory;

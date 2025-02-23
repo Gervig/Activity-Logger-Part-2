@@ -1,87 +1,89 @@
-package app.daos;
+package app.daos.impl;
 
-import app.dtos.CityInfoDTO;
-import app.entities.CityInfo;
+import app.daos.IDAO;
+import app.entities.Activity;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-public class CityInfoDAO implements IDAO<CityInfo, Long>
+public class ActivityDAO implements IDAO<Activity, Long>
+
 {
 
     private static EntityManagerFactory emf;
-    private static CityInfoDAO instance;
+    private static ActivityDAO instance;
 
-    private CityInfoDAO()
+    private ActivityDAO()
     {
     }
 
     //Singleton pattern
-    public static CityInfoDAO getInstance(EntityManagerFactory _emf)
+    public static ActivityDAO getInstance(EntityManagerFactory _emf)
     {
         if (emf == null)
         {
             emf = _emf;
-            instance = new CityInfoDAO();
+            instance = new ActivityDAO();
         }
         return instance;
     }
 
+
     @Override
-    public CityInfo create(CityInfo type)
+    public Activity create(Activity activity)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            em.persist(type);
+            em.persist(activity);
             em.getTransaction().commit();
-            return type;
+            return activity;
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error creating cityInfo", e);
+            throw new ApiException(401, "Error creating activity", e);
         }
     }
 
     @Override
-    public CityInfo read(Long id)
+    public Activity read(Long id)
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.find(CityInfo.class, id);
+            return em.find(Activity.class, id);
         }
     }
 
     @Override
-    public List<CityInfo> readAll()
+    public List<Activity> readAll()
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.createQuery("SELECT c FROM CityInfo c", CityInfo.class).getResultList();
+            return em.createQuery("SELECT a FROM Activity a", Activity.class).getResultList();
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error finding list of city info", e);
+            throw new ApiException(401, "Error finding list of activities", e);
         }
     }
 
     @Override
-    public CityInfo update(CityInfo type)
+    public Activity update(Activity type)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
             //Merge har en returtype, hvorfor man skal koble det på et updated objekt
-            CityInfo updatedCityInfo = em.merge(type);
+            Activity updatedActivity = em.merge(type);
             //Ryd cache
             em.flush();
             //Vi vil gerne sikre os det KUN er det ene objekt der er opdateret der kommer med
-            em.refresh(updatedCityInfo);
+            em.refresh(updatedActivity);
             em.getTransaction().commit();
-            return updatedCityInfo;
+            return updatedActivity;
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error updating city information", e);
+            throw new ApiException(401, "Error updating activity", e);
         }
     }
 
@@ -91,18 +93,19 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            CityInfo cityInfo = em.find(CityInfo.class, id);
-            if (cityInfo == null)
+            Activity activity = em.find(Activity.class, id);
+            if (activity == null)
             {
                 em.getTransaction().rollback();
-                throw new ApiException(401, "Error deleting cityInfo, cityInfo was not found");
+                throw new ApiException(401, "Error deleting activity, activity was not found");
             }
-            em.remove(cityInfo);
+            em.remove(activity);
             em.getTransaction().commit();
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error removing cityInfo", e);
+            throw new ApiException(401, "Error removing activity", e);
         }
+
     }
 
 }

@@ -1,5 +1,6 @@
-package app.daos;
+package app.daos.impl;
 
+import app.daos.IDAO;
 import app.entities.Users;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;

@@ -1,88 +1,87 @@
-package app.daos;
+package app.daos.impl;
 
-import app.entities.Activity;
+import app.daos.IDAO;
+import app.entities.WeatherInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-public class ActivityDAO implements IDAO<Activity, Long>
-
+public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
 {
 
     private static EntityManagerFactory emf;
-    private static ActivityDAO instance;
+    private static WeatherInfoDAO instance;
 
-    private ActivityDAO()
+    private WeatherInfoDAO()
     {
     }
 
     //Singleton pattern
-    public static ActivityDAO getInstance(EntityManagerFactory _emf)
+    public static WeatherInfoDAO getInstance(EntityManagerFactory _emf)
     {
         if (emf == null)
         {
             emf = _emf;
-            instance = new ActivityDAO();
+            instance = new WeatherInfoDAO();
         }
         return instance;
     }
 
-
     @Override
-    public Activity create(Activity activity)
+    public WeatherInfo create(WeatherInfo type)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            em.persist(activity);
+            em.persist(type);
             em.getTransaction().commit();
-            return activity;
+            return type;
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error creating activity", e);
+            throw new ApiException(401, "Error creating weatherInfo", e);
         }
     }
 
     @Override
-    public Activity read(Long id)
+    public WeatherInfo read(Long id)
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.find(Activity.class, id);
+            return em.find(WeatherInfo.class, id);
         }
     }
 
     @Override
-    public List<Activity> readAll()
+    public List<WeatherInfo> readAll()
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.createQuery("SELECT a FROM Activity a", Activity.class).getResultList();
+            return em.createQuery("SELECT w FROM WeatherInfo w", WeatherInfo.class).getResultList();
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error finding list of activities", e);
+            throw new ApiException(401, "Error finding list of weather info", e);
         }
     }
 
     @Override
-    public Activity update(Activity type)
+    public WeatherInfo update(WeatherInfo type)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
             //Merge har en returtype, hvorfor man skal koble det på et updated objekt
-            Activity updatedActivity = em.merge(type);
+            WeatherInfo updatedWeatherInfo = em.merge(type);
             //Ryd cache
             em.flush();
             //Vi vil gerne sikre os det KUN er det ene objekt der er opdateret der kommer med
-            em.refresh(updatedActivity);
+            em.refresh(updatedWeatherInfo);
             em.getTransaction().commit();
-            return updatedActivity;
+            return updatedWeatherInfo;
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error updating activity", e);
+            throw new ApiException(401, "Error updating weather information", e);
         }
     }
 
@@ -92,17 +91,17 @@ public class ActivityDAO implements IDAO<Activity, Long>
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            Activity activity = em.find(Activity.class, id);
-            if (activity == null)
+            WeatherInfo weatherInfo = em.find(WeatherInfo.class, id);
+            if (weatherInfo == null)
             {
                 em.getTransaction().rollback();
-                throw new ApiException(401, "Error deleting activity, activity was not found");
+                throw new ApiException(401, "Error deleting weatherInfo, weatherInfo was not found");
             }
-            em.remove(activity);
+            em.remove(weatherInfo);
             em.getTransaction().commit();
         } catch (Exception e)
         {
-            throw new ApiException(401, "Error removing activity", e);
+            throw new ApiException(401, "Error removing weatherInfo", e);
         }
 
     }
