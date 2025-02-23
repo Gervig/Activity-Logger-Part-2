@@ -5,16 +5,19 @@ import app.entities.Activity;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+
 import java.util.List;
 
-public class ActivityDAO implements IDAO<Activity,Long>
+public class ActivityDAO implements IDAO<Activity, Long>
 
 {
 
     private static EntityManagerFactory emf;
     private static ActivityDAO instance;
 
-    private ActivityDAO(){}
+    private ActivityDAO()
+    {
+    }
 
     //Singleton pattern
     public static ActivityDAO getInstance(EntityManagerFactory _emf)
