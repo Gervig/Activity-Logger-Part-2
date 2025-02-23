@@ -23,11 +23,11 @@ public class ActivityService
     }
 
     //Could this be void?
-    public Activity persistActivity(Users user, ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO)
+    public Activity persistActivity(Users user, ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO)
     {
         CityService cityService = new CityService();
         WeatherService weatherService = new WeatherService();
-        WeatherInfo weatherInfo = weatherService.buildWeatherInfo(weatherInfoDTO, currentDataDTO);
+        WeatherInfo weatherInfo = weatherService.buildWeatherInfo(weatherInfoDTO);
         CityInfo cityInfo = cityService.buildCityInfo(cityInfoDTO);
 
         Activity activity = Activity.builder()
