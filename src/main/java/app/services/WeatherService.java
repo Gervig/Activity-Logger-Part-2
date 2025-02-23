@@ -37,10 +37,9 @@ public class WeatherService {
         return null;
     }
 
-    //Could this be void?
-    public WeatherInfo persistWeatherInfo(WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO){
+    public WeatherInfo buildWeatherInfo(WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO){
         CurrentDataService currentDataService = new CurrentDataService();
-        CurrentData currentData = currentDataService.persistCurrentData(currentDataDTO);
+        CurrentData currentData = currentDataService.buildCurrentData(currentDataDTO);
 
         WeatherInfo weatherInfo = WeatherInfo.builder()
                 .locationName(weatherInfoDTO.getLocationName())

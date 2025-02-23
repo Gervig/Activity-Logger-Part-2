@@ -1,7 +1,5 @@
 package app.services;
 
-import app.callables.CityServiceCallable;
-import app.daos.CityInfoDAO;
 import app.entities.CityInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.dtos.CityInfoDTO;
@@ -14,12 +12,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class CityService
 {
@@ -67,8 +59,7 @@ public class CityService
         return null;
     }
 
-    //Could this be void?
-    public CityInfo persistCityInfo(CityInfoDTO cityInfoDTO){
+    public CityInfo buildCityInfo(CityInfoDTO cityInfoDTO){
         CityInfo cityInfo = CityInfo.builder()
                 .name(cityInfoDTO.getName())
                 .url(cityInfoDTO.getUrl())

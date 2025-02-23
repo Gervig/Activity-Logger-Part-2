@@ -7,7 +7,7 @@ public class CurrentDataService
 {
     //Task 3
     //Could this be void?
-    public CurrentData persistCurrentData(CurrentDataDTO currentDataDTO){
+    public CurrentData buildCurrentData(CurrentDataDTO currentDataDTO){
         CurrentData currentData = CurrentData.builder()
                 .temperature(currentDataDTO.getTemperature())
                 .humidity(currentDataDTO.getHumidity())

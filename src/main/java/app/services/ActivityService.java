@@ -1,6 +1,5 @@
 package app.services;
 
-import app.callables.CityServiceCallable;
 import app.daos.ActivityDAO;
 import app.daos.CityInfoDAO;
 import app.daos.WeatherInfoDAO;
@@ -28,8 +27,8 @@ public class ActivityService
     {
         CityService cityService = new CityService();
         WeatherService weatherService = new WeatherService();
-        WeatherInfo weatherInfo = weatherService.persistWeatherInfo(weatherInfoDTO, currentDataDTO);
-        CityInfo cityInfo = cityService.persistCityInfo(cityInfoDTO);
+        WeatherInfo weatherInfo = weatherService.buildWeatherInfo(weatherInfoDTO, currentDataDTO);
+        CityInfo cityInfo = cityService.buildCityInfo(cityInfoDTO);
 
         Activity activity = Activity.builder()
                 .exerciseDate(activityDTO.getExerciseDate())
