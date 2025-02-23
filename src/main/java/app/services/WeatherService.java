@@ -15,6 +15,8 @@ public class WeatherService {
     public static WeatherInfoDTO fetchWeatherDataByLocationName(String locationName) {
         HttpResponse<String> response;
         ObjectMapper objectMapper = new ObjectMapper();
+        //TODO:
+        // this API doesn't actually give any data?
         String uri = "https://vejr.eu/api.php?location=" + locationName + "&degree=C";
 
         try {
