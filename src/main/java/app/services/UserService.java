@@ -1,6 +1,7 @@
 package app.services;
 
 import app.daos.UserDAO;
+import app.dtos.UserDTO;
 import app.entities.Users;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -16,7 +17,7 @@ public class UserService
     }
 
     //Could this be void?
-    public Users persistUser(app.dtos.UserDTO userDTO)
+    public Users persistUser(UserDTO userDTO)
     {
         Users user = Users.builder()
                 .name(userDTO.getName())

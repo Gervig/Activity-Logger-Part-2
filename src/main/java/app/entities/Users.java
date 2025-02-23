@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Getter
 @ToString
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class Users
 
     private float weight;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL)
     @Setter
     private Set<Activity> activities = new HashSet<>();
 

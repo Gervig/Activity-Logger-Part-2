@@ -9,23 +9,21 @@ import app.entities.Activity;
 import app.entities.Users;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ActivityService
 {
     //Create an ActivityService that can call the DAO class and persist the data in the database.
-    private static EntityManagerFactory emf;
     private final ActivityDAO activityDAO;
-    private final CityInfoDAO cityInfoDAO;
-    private final WeatherInfoDAO weatherInfoDAO;
 
-    public ActivityService(ActivityDAO activityDAO, CityInfoDAO cityInfoDAO, WeatherInfoDAO weatherInfoDAO)
+    public ActivityService(ActivityDAO activityDAO)
     {
-     this.activityDAO = activityDAO;
-     this.weatherInfoDAO = weatherInfoDAO;
-     this.cityInfoDAO = cityInfoDAO;
+        this.activityDAO = activityDAO;
     }
 
     //Could this be void?
-    public Activity persistActivity(Users user, app.dtos.ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO)
+    public Activity persistActivity(Users user, ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO)
     {
         CityService cityService = new CityService();
         WeatherService weatherService = new WeatherService();
@@ -45,6 +43,11 @@ public class ActivityService
                 .build();
 
         activity = activityDAO.create(activity);
+
+        Set<Activity> activitySet = new HashSet<>();
+
+        user.setActivities(activitySet);
+        user.addActivity(activity);
 
         return activity;
     }

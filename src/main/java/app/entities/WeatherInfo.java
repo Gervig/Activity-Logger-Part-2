@@ -19,7 +19,7 @@ public class WeatherInfo
     @Column(name="location_name")
     private String locationName;
 
-    @OneToOne // WeatherInfo owns the relationship
+    @OneToOne(cascade = CascadeType.PERSIST) // WeatherInfo owns the relationship
     @JoinColumn(name = "current_data_id", nullable = false)
     private CurrentData currentData;
 

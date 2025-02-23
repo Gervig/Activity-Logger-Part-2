@@ -41,11 +41,11 @@ public class Activity
         }
     }
 
-    @ManyToOne // Many activities can happen in the same city
-    @JoinColumn(name = "city_info_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.PERSIST) // Many activities can happen in the same city
+    @JoinColumn(name = "city_info_id", nullable = true)
     private CityInfo cityInfo;
 
-    @OneToOne // One activity has one weather report
+    @OneToOne(cascade = CascadeType.PERSIST) // One activity has one weather report
     @JoinColumn(name = "weather_info_id", nullable = true)
     private WeatherInfo weatherInfo;
 

@@ -66,6 +66,7 @@ public class CityService
                 .latitude(cityInfoDTO.getVisualCenter().get(0))
                 .longitude(cityInfoDTO.getVisualCenter().get(1))
                 .build();
+
         return cityInfo;
     }
 
