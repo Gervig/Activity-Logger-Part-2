@@ -11,8 +11,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WeatherInfoDTO {
-    @JsonProperty("LocationName")
-    private String locationName;
-    @JsonProperty("CurrentData")
-    private CurrentDataDTO currentData;
+    private String cityName;
+    private int temp_C;
+    private int cloudcover;
+    private int humidity;
+    private int windspeedKmph;
 }
