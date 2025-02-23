@@ -5,6 +5,8 @@ import app.daos.CityInfoDAO;
 import app.daos.WeatherInfoDAO;
 import app.dtos.*;
 import app.entities.*;
+import app.entities.ActivityDTO;
+import app.entities.UserDTO;
 import jakarta.persistence.EntityManagerFactory;
 
 public class ActivityService
@@ -23,14 +25,14 @@ public class ActivityService
     }
 
     //Could this be void?
-    public Activity persistActivity(Users user, ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO)
+    public ActivityDTO persistActivity(UserDTO user, app.dtos.ActivityDTO activityDTO, CityInfoDTO cityInfoDTO, WeatherInfoDTO weatherInfoDTO, CurrentDataDTO currentDataDTO)
     {
         CityService cityService = new CityService();
         WeatherService weatherService = new WeatherService();
         WeatherInfo weatherInfo = weatherService.buildWeatherInfo(weatherInfoDTO, currentDataDTO);
         CityInfo cityInfo = cityService.buildCityInfo(cityInfoDTO);
 
-        Activity activity = Activity.builder()
+        ActivityDTO activity = ActivityDTO.builder()
                 .exerciseDate(activityDTO.getExerciseDate())
                 .exerciseType(activityDTO.getExerciseType())
                 .timeOfDay(activityDTO.getTimeOfDay())

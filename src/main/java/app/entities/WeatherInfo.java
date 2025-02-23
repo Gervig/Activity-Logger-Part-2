@@ -1,7 +1,5 @@
 package app.entities;
 
-import app.dtos.CurrentDataDTO;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,5 +24,5 @@ public class WeatherInfo
     private CurrentData currentData;
 
     @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
-    private Activity activity;
+    private ActivityDTO activity;
 }

@@ -1,14 +1,13 @@
 package app.daos;
 
-import app.dtos.ActivityDTO;
-import app.entities.Activity;
+import app.entities.ActivityDTO;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-public class ActivityDAO implements IDAO<Activity, Long>
+public class ActivityDAO implements IDAO<ActivityDTO, Long>
 
 {
 
@@ -32,7 +31,7 @@ public class ActivityDAO implements IDAO<Activity, Long>
 
 
     @Override
-    public Activity create(Activity activity)
+    public ActivityDTO create(ActivityDTO activity)
     {
         try (EntityManager em = emf.createEntityManager())
         {
@@ -47,20 +46,20 @@ public class ActivityDAO implements IDAO<Activity, Long>
     }
 
     @Override
-    public Activity read(Long id)
+    public ActivityDTO read(Long id)
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.find(Activity.class, id);
+            return em.find(ActivityDTO.class, id);
         }
     }
 
     @Override
-    public List<Activity> readAll()
+    public List<ActivityDTO> readAll()
     {
         try (EntityManager em = emf.createEntityManager())
         {
-            return em.createQuery("SELECT a FROM Activity a", Activity.class).getResultList();
+            return em.createQuery("SELECT a FROM ActivityDTO a", ActivityDTO.class).getResultList();
         } catch (Exception e)
         {
             throw new ApiException(401, "Error finding list of activities", e);
@@ -68,13 +67,13 @@ public class ActivityDAO implements IDAO<Activity, Long>
     }
 
     @Override
-    public Activity update(Activity type)
+    public ActivityDTO update(ActivityDTO type)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
             //Merge har en returtype, hvorfor man skal koble det på et updated objekt
-            Activity updatedActivity = em.merge(type);
+            ActivityDTO updatedActivity = em.merge(type);
             //Ryd cache
             em.flush();
             //Vi vil gerne sikre os det KUN er det ene objekt der er opdateret der kommer med
@@ -93,7 +92,7 @@ public class ActivityDAO implements IDAO<Activity, Long>
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            Activity activity = em.find(Activity.class, id);
+            ActivityDTO activity = em.find(ActivityDTO.class, id);
             if (activity == null)
             {
                 em.getTransaction().rollback();

@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @DynamicUpdate
 @Builder
 @Entity
-public class Activity
+public class ActivityDTO
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,16 +32,15 @@ public class Activity
 
     @ManyToOne
     @Setter
-    private Users users;
+    private UserDTO users;
 
-    public void addUser(Users users){
+    public void addUser(UserDTO users){
         if(users != null){
             this.users = users;
             users.addActivity(this);
         }
     }
 
-    //TODO lav relation om, mange til en
     @ManyToOne // Many activities can happen in the same city
     @JoinColumn(name = "city_info_id", nullable = false)
     private CityInfo cityInfo;
@@ -49,6 +48,5 @@ public class Activity
     @OneToOne // One activity has one weather report
     @JoinColumn(name = "weather_info_id", nullable = true)
     private WeatherInfo weatherInfo;
-
 
 }

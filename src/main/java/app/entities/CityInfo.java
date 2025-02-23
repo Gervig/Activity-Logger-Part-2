@@ -39,5 +39,5 @@ public class CityInfo
 
     //TODO lav relation om, mange til en
     @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.ALL) // One city has many activities
-    private List<Activity> activities = new ArrayList<>();
+    private List<ActivityDTO> activities = new ArrayList<>();
 }

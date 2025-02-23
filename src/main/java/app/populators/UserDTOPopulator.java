@@ -1,47 +1,47 @@
 package app.populators;
 
-import app.entities.Users;
+import app.entities.UserDTO;
 
-public class UserPopulator
+public class UserDTOPopulator
 {
-    public static Users[] populate()
+    public static UserDTO[] populate()
     {
-        Users u1 = Users.builder()
+        UserDTO u1 = UserDTO.builder()
                 .age(33)
                 .name("Casper")
                 .weight(85F)
                 .build();
 
-        Users u2 = Users.builder()
+        UserDTO u2 = UserDTO.builder()
                 .age(27)
                 .name("Sophie")
                 .weight(62.2F)
                 .build();
 
-        Users u3 = Users.builder()
+        UserDTO u3 = UserDTO.builder()
                 .age(40)
                 .name("Michael")
                 .weight(90.5F)
                 .build();
 
-        Users u4 = Users.builder()
+        UserDTO u4 = UserDTO.builder()
                 .age(22)
                 .name("Emma")
                 .weight(55.3F)
                 .build();
 
-        Users u5 = Users.builder()
+        UserDTO u5 = UserDTO.builder()
                 .age(36)
                 .name("Daniel")
                 .weight(78.7F)
                 .build();
 
-        Users u6 = Users.builder()
+        UserDTO u6 = UserDTO.builder()
                 .age(29)
                 .name("Olivia")
                 .weight(58.1F)
                 .build();
 
-        return new Users[]{u1, u2, u3, u4, u5, u6};
+        return new UserDTO[]{u1, u2, u3, u4, u5, u6};
     }
 }

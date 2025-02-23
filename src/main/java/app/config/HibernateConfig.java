@@ -41,10 +41,10 @@ public class HibernateConfig {
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
 //             configuration.addAnnotatedClass();
-        configuration.addAnnotatedClass(Activity.class);
+        configuration.addAnnotatedClass(ActivityDTO.class);
         configuration.addAnnotatedClass(CityInfo.class);
         configuration.addAnnotatedClass(CurrentData.class);
-        configuration.addAnnotatedClass(Users.class);
+        configuration.addAnnotatedClass(UserDTO.class);
         configuration.addAnnotatedClass(WeatherInfo.class);
     }
 
