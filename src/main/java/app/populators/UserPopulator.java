@@ -9,7 +9,7 @@ public class UserPopulator
         Users u1 = Users.builder()
                 .age(33)
                 .name("Casper")
-                .weight(85.0F)
+                .weight(85F)
                 .build();
 
         Users u2 = Users.builder()
