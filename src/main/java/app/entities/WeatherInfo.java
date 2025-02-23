@@ -16,12 +16,12 @@ public class WeatherInfo
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
-    @Column(name="location_name")
-    private String locationName;
-
-    @OneToOne(cascade = CascadeType.PERSIST) // WeatherInfo owns the relationship
-    @JoinColumn(name = "current_data_id", nullable = false)
-    private CurrentData currentData;
+    @Column(name="city_name")
+    private String cityName;
+    private int temp_C;
+    private int cloudcover;
+    private int humidity;
+    private int windspeedKmph;
 
     @OneToOne(mappedBy = "weatherInfo", cascade = CascadeType.ALL)
     private Activity activity;
