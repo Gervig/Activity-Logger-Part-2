@@ -42,7 +42,6 @@ public class CurrentDataDAO implements IDAO<CurrentData, Long>
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating currentData", e);
-            //Eventuelt kunne man have en rollback
         }
     }
 

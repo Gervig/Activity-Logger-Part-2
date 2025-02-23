@@ -40,7 +40,6 @@ public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating weatherInfo", e);
-            //Eventuelt kunne man have en rollback
         }
     }
 

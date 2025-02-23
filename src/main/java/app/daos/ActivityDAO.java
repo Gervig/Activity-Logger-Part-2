@@ -40,7 +40,6 @@ public class ActivityDAO implements IDAO<Activity,Long>
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating activity", e);
-            //Eventuelt kunne man have en rollback
         }
     }
 

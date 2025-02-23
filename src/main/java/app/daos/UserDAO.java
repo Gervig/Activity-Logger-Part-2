@@ -42,7 +42,6 @@ public class UserDAO implements IDAO<Users,Long>
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating user", e);
-            //Eventuelt kunne man have en rollback
         }
     }
 

@@ -39,7 +39,6 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
         } catch (Exception e)
         {
             throw new ApiException(401, "Error creating cityInfo", e);
-            //Eventuelt kunne man have en rollback
         }
     }
 
