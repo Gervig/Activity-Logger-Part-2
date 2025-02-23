@@ -12,22 +12,22 @@ public class CurrentDataDAO implements IDAO<CurrentData, Long>
 {
 
     private static EntityManagerFactory emf;
-    private static CurrentDataDAO INSTANCE;
+    private static CurrentDataDAO instance;
 
     //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
-    private CurrentDataDAO(EntityManagerFactory emf)
+    private CurrentDataDAO()
     {
-        this.emf = emf;
     }
 
     //Singleton pattern
-    public static CurrentDataDAO getInstance(EntityManagerFactory emf)
+    public static CurrentDataDAO getInstance(EntityManagerFactory _emf)
     {
-        if (INSTANCE == null)
+        if (emf == null)
         {
-            INSTANCE = new CurrentDataDAO(emf);
+            emf = _emf;
+            instance = new CurrentDataDAO();
         }
-        return INSTANCE;
+        return instance;
     }
 
 

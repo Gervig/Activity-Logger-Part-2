@@ -12,22 +12,20 @@ public class ActivityDAO implements IDAO<Activity,Long>
 {
 
     private static EntityManagerFactory emf;
-    private static ActivityDAO INSTANCE;
+    private static ActivityDAO instance;
 
     //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
-    private ActivityDAO(EntityManagerFactory emf)
-    {
-        this.emf = emf;
-    }
+    private ActivityDAO(){}
 
     //Singleton pattern
-    public static ActivityDAO getInstance(EntityManagerFactory emf)
+    public static ActivityDAO getInstance(EntityManagerFactory _emf)
     {
-        if (INSTANCE == null)
+        if (emf == null)
         {
-            INSTANCE = new ActivityDAO(emf);
+            emf = _emf;
+            instance = new ActivityDAO();
         }
-        return INSTANCE;
+        return instance;
     }
 
 

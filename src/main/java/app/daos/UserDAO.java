@@ -12,22 +12,22 @@ public class UserDAO implements IDAO<Users,Long>
 {
 
     private static EntityManagerFactory emf;
-    private static UserDAO INSTANCE;
+    private static UserDAO instance;
 
     //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
-    private UserDAO(EntityManagerFactory emf)
+    private UserDAO()
     {
-        this.emf = emf;
     }
 
     //Singleton pattern
-    public static UserDAO getInstance(EntityManagerFactory emf)
+    public static UserDAO getInstance(EntityManagerFactory _emf)
     {
-        if (INSTANCE == null)
+        if (emf == null)
         {
-            INSTANCE = new UserDAO(emf);
+            emf = _emf;
+            instance = new UserDAO();
         }
-        return INSTANCE;
+        return instance;
     }
 
 

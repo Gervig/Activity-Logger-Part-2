@@ -12,22 +12,20 @@ public class CityInfoDAO implements IDAO<CityInfo, Long>
 {
 
     private static EntityManagerFactory emf;
-    private static CityInfoDAO INSTANCE;
+    private static CityInfoDAO instance;
 
     //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
-    private CityInfoDAO(EntityManagerFactory emf)
-    {
-        this.emf = emf;
-    }
+    private CityInfoDAO(){}
 
     //Singleton pattern
-    public static CityInfoDAO getInstance(EntityManagerFactory emf)
+    public static CityInfoDAO getInstance(EntityManagerFactory _emf)
     {
-        if (INSTANCE == null)
+        if (emf == null)
         {
-            INSTANCE = new CityInfoDAO(emf);
+            emf = _emf;
+            instance = new CityInfoDAO();
         }
-        return INSTANCE;
+        return instance;
     }
 
     @Override

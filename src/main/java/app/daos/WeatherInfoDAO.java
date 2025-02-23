@@ -1,6 +1,5 @@
 package app.daos;
 
-import app.dtos.WeatherInfoDTO;
 import app.entities.WeatherInfo;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
@@ -12,22 +11,22 @@ public class WeatherInfoDAO implements IDAO<WeatherInfo, Long>
 {
 
     private static EntityManagerFactory emf;
-    private static WeatherInfoDAO INSTANCE;
+    private static WeatherInfoDAO instance;
 
     //Constructoren - fordi det er singleton pattern, laver man en privat constructor så den er cuttet af og andre ikke kan bruge den
-    private WeatherInfoDAO(EntityManagerFactory emf)
+    private WeatherInfoDAO()
     {
-        this.emf = emf;
     }
 
     //Singleton pattern
-    public static WeatherInfoDAO getInstance(EntityManagerFactory emf)
+    public static WeatherInfoDAO getInstance(EntityManagerFactory _emf)
     {
-        if (INSTANCE == null)
+        if (emf == null)
         {
-            INSTANCE = new WeatherInfoDAO(emf);
+            emf = _emf;
+            instance = new WeatherInfoDAO();
         }
-        return INSTANCE;
+        return instance;
     }
     @Override
     public WeatherInfo create(WeatherInfo type)
