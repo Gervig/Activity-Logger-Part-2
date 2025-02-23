@@ -28,10 +28,6 @@ public class CityInfo
     private String url;
 
     @Setter
-    @Column(name="href_id")
-    private String hrefId;
-
-    @Setter
     private Double latitude;
 
     @Setter
