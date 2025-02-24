@@ -26,12 +26,16 @@ public class Main
         UserDTO[] userDTOS = UserDTOPopulator.populate();
         ActivityDTO[] activityDTOS = ActivityDTOPopulator.populate();
 
-        // Scalable can call multiple cities
+        // Scalable can call multiple cities //TODO test this
         String[] cityNames = new String[]{
                 "Roskilde"
         };
 
-        // Creates DTOs from API data
+        //TODO
+        // Can this be done with just one ServiceCallable class?
+        // maybe handle all threads in ActivityService
+
+        // Creates DTOs from API data.
         List<CityInfoDTO> cityInfoDTOS = CityServiceCallable.getCityInfoDTOs(cityNames);
         List<WeatherInfoDTO> weatherInfoDTOS = WeatherServiceCallable.getWeatherInfoDTOs(cityNames);
 
